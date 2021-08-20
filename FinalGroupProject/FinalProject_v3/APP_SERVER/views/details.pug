@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  .container.listpage
+        .row
+          h1.listtitle.text-center RECEPIE DETAILS
+          each item in foods
+            .col-sm-12.col-12.text-center(style='padding-top:20px;padding-bottom:20px')
+              img.img-fluid.pb-3.list-img(src="/images/"+item.name+".jpg" alt=item.name onError="this.onerror=null;this.src='/images/defaultfood.jpg';")
+            .col-sm-4.col-12
+              .card.text-center.border-0.rounded-0
+                .card-body
+                  h4.bak-white(style='font-weight:bold;') Name:  #{item.name}
+                  h4.bak-white(style='font-weight:bold;') Cuisine:  #{item.cuisine[0].name}
+                  h4.bak-white(style='font-weight:bold;') Type:  #{item.type}
+                  p.bak-white=item.description
+                
+            .col-sm-3.col-12
+              .card.text-center.border-0.rounded-0
+                .card-body
+                  h4.bak-white(style='font-weight:bold;') Ingredients
+                  each Ingredient in item.ingredients
+                    p #{Ingredient.name}, #{Ingredient.measurement}#{Ingredient.unit}
+            .col-sm-5.col-12
+              .card.text-center.border-0.rounded-0
+                .card-body
+                  h4.bak-white(style='font-weight:bold;') Procedure
+                  each steps in item.procedures
+                    p #{steps.step_no} : #{steps.description}       
+            .col-lg-12.col-12.text-center
+              a.videobtn.btn.text-uppercase(target= '_blank' aria-label=item.name href=item.url)="Make "+ item.name     
+                    
+                    
+    
+
+
+  

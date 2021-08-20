@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .container.listpage
+        .row
+          h1.listtitle.text-center EXPLORE RECEPIES
+          each item in foods
+            .col-lg-4.col-12(style='padding-top:50px;padding-bottom:50px')
+              .card.text-center.border-0.rounded-0
+                .card-body
+                  img.img-fluid.pb-3.list-img(src="/images/"+ item.name +".jpg" alt=item.name onError="this.onerror=null;this.src='/images/defaultfood.jpg';")
+                  h4.bak-white(style='font-weight:bold;')=item.name + " (" + item.cuisine[0].name + ")"
+                  p.bak-white=item.description
+                .card-footer
+                  a.makeit.btn.btn-block.text-uppercase(target= '_blank' aria-label=item.name href=`/details/${item._id}`)="SEE DETAILS.. "
+                  //a.makeit.btn.btn-block.text-uppercase(target= '_blank' aria-label=item.Name href=item.URL)"LET'S MAKE "+item.Name
+          .col-lg-12.col-12.text-center
+              a.videobtn.btn.text-uppercase(target= '_blank' aria-label="Add new receipe" href='/new') ADD NEW RECEIPE    
+                    
+                    
+  

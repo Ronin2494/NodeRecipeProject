@@ -1,0 +1,44 @@
+<div class="container listpage">
+    <div class="row" *ngFor= "let food of newFood;">
+        <h1 class="listtitle text-center">RECEPIE DETAILS</h1>
+
+        <div class="col-sm-12 col-12 text-center" style="padding-top:20px;padding-bottom:20px">
+            <img class="img-fluid pb-3 list-img" src="../../assets/images/{{food.name}}.jpg" alt={{food.name}} onerror="this.onerror=null;this.src='../../assets/images/defaultfood.jpg';">
+        </div>
+        <div class="col-sm-4 col-12">
+            <div class="card text-center border-0 rounded-0">
+                <div class="card-body">
+                    <h4 class="bak-white" style="font-weight:bold;">{{food.name}}</h4>
+                    <h4 class="bak-white" style="font-weight:bold;">{{food.cuisine[0].name}}</h4>
+                    <h4 class="bak-white" style="font-weight:bold;">{{food.type}}</h4>
+                    <p class="bak-white">{{food.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-12">
+            <div class="card text-center border-0 rounded-0">
+                <div class="card-body">
+                    <h4 class="bak-white" style="font-weight:bold;">Ingredients</h4>
+                    <p *ngFor= "let ing of newFood[0].ingredients;">{{ing.name}}, {{ing.measurement}} {{ ing.unit}}</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5 col-12">
+            <div class="card text-center border-0 rounded-0">
+                <div class="card-body">
+                    <h4 class="bak-white" style="font-weight:bold;">Procedure</h4>
+                    <p *ngFor= "let pro of newFood[0].procedures;">({{pro.step_no}}) {{pro.description}}</p>
+                </div>
+            </div>
+        </div>
+    <div class="col-lg-12 col-12 text-center" style="margin-bottom:10px;">
+        <a style="margin-right:10px;" class="btn-primary btn text-uppercase" target="_blank" aria-label={{food.name}} href={{food.url}}>Make {{food.name}}</a>
+        <a *ngIf="tokenavailable" (click)="tokenavailable = false" id="btnupdate" style="margin-right:10px;" class="btn btn btn-info text-uppercase ml-5"  
+        aria-label={{food.name}} [routerLink] ="['/update', food._id]">UPDATE</a>
+        <a *ngIf="tokenavailable" (click)="tokenavailable = false"  id="btndelete" class="btn btn btn-danger text-uppercase ml-5"  
+        aria-label={{food.name}} [routerLink] ="['/delete', food._id]">DELETE</a>
+    </div>
+</div>
+</div>

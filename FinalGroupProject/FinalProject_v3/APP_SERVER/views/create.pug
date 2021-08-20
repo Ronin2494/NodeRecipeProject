@@ -1,0 +1,86 @@
+extends layout
+
+block content
+  .container
+    h1.abouttitle.text-center= title
+    .row
+        form(action='' method='POST' target='_blank')
+                .col-sm-6.text-center(style= "padding:15px;")
+                    .form-group
+                        label(for='name') Receipe Name
+                        input#inputname.form-control(type='text' required name='name' placeholder='Enter Name of the receipe')                   
+                    .form-group
+                        label(for='description') Description
+                        textarea#inputdescription.form-control( required name="description")
+
+                    .form-group
+                        label(for='type') Type
+                        select#type.form-control(name="type")
+                            option Breakfast
+                            option Brunch
+                            option Lunch
+                            option Snacks
+                            option Dinner
+                            option Diet
+                    .form-group
+                        label(for='cuisine') Cuisine
+                        select#type.form-control(name="cuisine" required)
+                            each cuisine in data
+                                option(value=cuisine._id)=cuisine.name
+
+                    .form-group
+                        label(for='url') URL
+                        input#inputurl.form-control(name="url" type='text' required placeholder='Video URL')
+
+                .col-sm-6.text-center(style= "padding:15px;")
+                    .form-group
+                        .container.col-sm-12
+                            label(for='ingredients') Ingredients
+                            table#myTable_ingredient.table.order-list
+                                thead
+                                    tr
+                                        td Ingredient
+                                        td Amount
+                                        td Unit
+                                tbody
+                                    tr
+                                        td.col-sm-4
+                                            input.form-control(required type='text' name='ingredient_name0')
+                                        td.col-sm-4
+                                            input.form-control(required type='number' name='measurement0')
+                                        td.col-sm-3
+                                            input.form-control(type='text' name='unit0')
+                                        td.col-sm-2
+                                            a.deleteRow
+                                tfoot
+                                    tr
+                                        td(colspan='5' style='text-align: left;')
+                                            input#addrow_ingredient.btn.btn-info(type='button' value='Add Ingredient')
+                                    tr
+                    .form-group
+                        .container.col-sm-12
+                            label(for='procedure') Procedure
+                            table#myTable_procedure.table.order-list
+                                thead
+                                    tr
+                                        td Step_No.
+                                        td Detail
+                                tbody
+                                    tr
+                                        td.col-sm-4
+                                            input.form-control(type='number' name='step_no0' required)
+                                        td.col-sm-7
+                                            input.form-control(type='text' name='procedure_description0' required)
+                                        td.col-sm-2
+                                            a.deleteRow
+                                tfoot
+                                    tr
+                                        td(colspan='5' style='text-align: left;')
+                                            input#addrow_procedure.btn.btn-info(type='button' value='Add Step')
+                                    tr
+
+                
+
+                    button.btn.btn-success(type='submit') Submit
+
+        

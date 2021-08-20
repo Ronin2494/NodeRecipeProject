@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js')
+    script(src='/javascripts/main.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body
+    nav.navbar(style='background-color: #351c01; min-height:70px;')
+      .container-fluid(style="margin-top:10px;")
+        .navbar-header
+          button.navbar-toggle.collapsed(style = 'background-color:white;')(type='button' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar(style = 'background-color:black;')
+            span.icon-bar(style = 'background-color:black;')
+            span.icon-bar(style = 'background-color:black;')
+          img.img-fluid.pb-3.pull-left.logo-img(src="/images/logo1.png")
+          a.navbar-brand(style='color:white; font-weight:bold;font-family:cursive')(href='/') THE SECRET RECEIPE
+           
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+               a(href='/') Home
+            li
+              a(href='/about') About
+            li
+              a(href='/list') Recepies
+            //- li
+              //- a(href='/display') Display
+            //- li.dropdown
+            //-   a.dropdown-toggle(href='#' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false')
+            //-     | Dropdown 
+            //-     span.caret
+            //-   ul.dropdown-menu
+            //-     li
+            //-       a(href='#') Action
+            //-     li
+            //-       a(href='#') Another action
+            //-     li
+            //-       a(href='#') Something else here      
+    block content
+    
+    block foot
+      footer.footerfixed.page-footer.font-small(style="background-color:black;min-height:35px;padding:10px")     
+        .text-center.text-info
+          | &copy; 2020 Swetha-Mary-Philip: All rights reserved
+          br 
+          a.text-light(href='http://janmanindia.org/' target='_blank') visit us
+

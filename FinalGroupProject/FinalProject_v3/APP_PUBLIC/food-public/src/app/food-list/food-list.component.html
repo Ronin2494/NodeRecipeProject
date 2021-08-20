@@ -1,0 +1,31 @@
+<div class="container listpage">
+<div class="row">
+    <h1 class="listtitle text-center">EXPLORE RECEPIES</h1>
+  
+    <div class="col-lg-4 col-12" style="padding-top:50px;padding-bottom:50px" *ngFor= "let food of foods;">
+        <div class="card text-center border-0 rounded-0">
+            <div class="card-body">
+                <img class="img-fluid pb-3 list-img" src="../../assets/images/{{food.name}}.jpg" alt= {{food.name}} onerror="this.onerror=null;this.src='../../assets/images/defaultfood.jpg';">
+                <h4 class="bak-white" style="font-weight:bold;">{{food.name}}</h4>
+                <p class="bak-white">
+                   {{food.description}} 
+                </p>
+            </div>
+            <div class="card-footer">
+                <a class="makeit btn btn-block text-uppercase"  
+                aria-label={{food.name}} [routerLink] ="['/details', food._id]">SEE DETAILS.. </a><!--a.makeit.btn.btn-block.text-uppercase(target= '_blank' aria-label=item.Name href=item.URL)"LET'S MAKE "+item.Name-->
+                <a class="btn-warning btn btn-block text-uppercase"  
+                aria-label={{food.name}} [routerLink] ="['/review', food._id]">SEE REVIEWS</a><!--a.makeit.btn.btn-block.text-uppercase(target= '_blank' aria-label=item.Name href=item.URL)"LET'S MAKE "+item.Name-->          
+            
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="col-lg-12 col-12 text-center">
+        <a id="btnaddnewfood" class="videobtn btn text-uppercase" target="_blank" aria-label="Add new receipe" href="/new">ADD NEW RECEIPE    </a>
+    </div>
+</div>
+</div>
+<router-outlet></router-outlet>
+

@@ -1,0 +1,135 @@
+<div class="container">
+    <h1 class="abouttitle text-center">Create New Food</h1>
+    <div class="row">
+        <form  #newfood= "ngForm" [formGroup]="foodForm" (ngSubmit)="createNewFood()" >
+            <div class="col-sm-6 text-center" style="padding:15px;">
+                
+                <div class="form-group" [ngClass]="displayFieldCss('name')">
+                    <label for="name"><span class="required1">*</span>Recipe Name</label>
+                    <input formControlName ="name" class="form-control" id="inputname" type="text" required name="name" placeholder="Enter Name of the receipe" required minlength="3">
+                    <app-field-error-display 
+                        [displayError]="isFieldValid('name')"
+                        errorMsg="Please enter a  name">
+                    </app-field-error-display> 
+                </div>
+                <div class="form-group" [ngClass]="displayFieldCss('description')">
+                    <label for="description"><span class="required1">*</span>Description</label>
+                    <textarea formControlName ="description" class="form-control" id="inputdescription" type="text" required  name="description" required minlength="15"></textarea>
+                    <app-field-error-display 
+                        [displayError]="isFieldValid('description')"
+                        errorMsg="Please enter minimun 15 characters">
+                    </app-field-error-display> 
+                </div>
+                <div class="form-group" [ngClass]="displayFieldCss('type')">
+                    <label for="type"><span class="required1">*</span>Type</label>
+                    <select formControlName ="type" class="form-control" id="type" name="type" required>
+                        <option>Breakfast</option>
+                        <option>Brunch</option>
+                        <option>Lunch</option>
+                        <option>Snacks</option>
+                        <option>Dinner</option>
+                        <option>Diet</option>     
+                    </select>
+                    <app-field-error-display 
+                        [displayError]="isFieldValid('type')"
+                        errorMsg="Please select type">
+                    </app-field-error-display> 
+                
+                </div>
+                <div class="form-group" [ngClass]="displayFieldCss('cuisine')">
+                    <label for="cuisine"><span class="required1">*</span>Cuisine</label>
+                    <select formControlName ="cuisine" class="form-control" name="cuisine" required>
+                        <option *ngFor= "let cus of cuisine;" value={{cus._id}}>{{cus.name}}</option>
+                    </select>
+                    <app-field-error-display 
+                        [displayError]="isFieldValid('cuisine')"
+                        errorMsg="Please select a cuisine">
+                    </app-field-error-display> 
+                </div>
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input formControlName ="url" class="form-control" id="inputurl" name="url" type="text"  placeholder="Video URL">
+                </div>
+            </div>
+            <div class="col-sm-6 text-center" style="padding:15px;">
+                <div class="form-group" formArrayName= "ingredients">
+                    <div class="container col-sm-12">
+                        <label for="ingredients">Ingredients</label>
+                        <table class="table order-list" id="myTable_ingredient">
+                            <thead>
+                                <tr>
+                                    <td><span class="required1">*</span>Ingredient</td>
+                                    <td><span class="required1">*</span>Amount</td>
+                                    <td>Unit</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of _ingredients.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                                    <td class="col-sm-4">
+                                        <div [ngClass]="displayFieldCss('name')">
+                                        <input formControlName="name" required type="text" name="ingredient_name0">  
+                                    </div>                                      
+                                    </td>
+                                    <td class="col-sm-4">
+                                        <input formControlName="measurement"  required min=0 type="number" name="measurement0">
+                                    </td>
+                                    <td class="col-sm-3">
+                                        <input formControlName="unit" class="form-control" type="text" name="unit0">
+                                    </td>
+                                    <td class="col-sm-1">
+                                        <input class="btn btn-danger" (click)="delete_ingredients(pointIndex)" type="button" value="Remove">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align: left;">
+                                        <input (click)="add_ingredients()" class="btn btn-info" type="button" value="Add Ingredient">
+                                    </td>
+                                </tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group" formArrayName= "procedures">
+                    <div class="container col-sm-12">
+                        <label for="procedure">Procedure</label>
+                        <table class="table order-list" id="myTable_procedure">
+                            <thead>
+                                <tr>
+                                    <td><span class="required1">*</span>Step_No.</td>
+                                    <td><span class="required1">*</span>Detail</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of _procedures.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                                    <td class="col-sm-4">
+                                        <input formControlName="step_no" class="form-control" type="number"  required min=1>
+                                    </td>
+                                    <td class="col-sm-7">
+                                        <input formControlName="description" class="form-control" type="text"  required="">
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <input class="btn btn-danger" (click)="delete_procedures(pointIndex)" type="button" value="Remove">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align: left;">
+                                        <input class="btn btn-info" (click)="add_procedures()" type="button" value="Add Step">
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                
+                <button class="btn btn-success" type="submit" [disabled]="!foodForm.valid">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- {{ this.foodForm.value | json }} -->

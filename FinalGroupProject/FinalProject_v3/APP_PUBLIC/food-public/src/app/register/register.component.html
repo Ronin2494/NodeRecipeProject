@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-7 text-center about-text">
+            <h1 style="margin-bottom: 10px;" class="abouttitle text-center">User Registration</h1>
+            <form  class="form-horizontal" (ngSubmit) = "registerUser(registerdata)" style="padding-top:20px" [formGroup]="form">
+                <div class="form-group" [ngClass]="displayFieldCss('username')">
+                    <div class="col-sm-12">
+                        <label for="username" class="control-label required">UserName: </label>
+                            <input class="form-control control-label.required" formControlName="username"  [(ngModel)] = "registerdata.username" name="username" required >
+                            <app-field-error-display 
+                            [displayError]="isFieldValid('username')"
+                            errorMsg="Please enter a username">
+                            </app-field-error-display> 
+                          </div>   
+                </div>
+                <div class="form-group" [ngClass]="displayFieldCss('username')">
+                    <div class="col-sm-12">
+                <label  for="email" class="control-label required">Email Id: </label>
+                <input type="email" class="form-control control-label.required" formControlName="email" [(ngModel)] = "registerdata.email" id = "email" name="email" required>
+                
+                <app-field-error-display 
+                [displayError]="isFieldValid('email')"
+                errorMsg="Please enter a valid email">
+                </app-field-error-display> 
+              </div>   
+            </div>
+                <div class="form-group" [ngClass]="displayFieldCss('username')">
+                <div class="col-sm-12">
+                <label for="password" class="control-label required">Password: </label>
+                <input class="form-control control-label.required" formControlName="password"  [(ngModel)] = "registerdata.password" type="password" id = "password" name="password" required>
+                <app-field-error-display 
+                [displayError]="isFieldValid('password')"
+                errorMsg="Please enter a password">
+                </app-field-error-display> 
+            </div>
+        </div>
+            <p style="font-size:12px; color:blue">Note: Please login after registration.</p> 
+                <button class="btn btn-primary" href="#" type ="submit" style="margin-left:80px;" [disabled]="!form.valid"> Register </button>  
+               
+            
+            </form>
+            <img class="img-fluid px-3 text-center abt-btm-img" src="../../assets/images/background2.png" alt="ingredients image">
+        </div>
+        <div class="col-sm-5 text-center" style="margin-bottom: 20px;;">
+            <div class="col-sm-12" style="margin-bottom: 10px;;"><h3 style="text-decoration: underline; color: chocolate; font-weight: bold;">Our Prominent Members</h3></div>
+            
+            <div class="col-sm-12 text-center"></div>
+            <a href="https://www.gordonramsay.com/" target="_blank"><img class="img-fluid px-3 text-center img-about" src="../../assets/images/gordon.jpg" alt="Gordon Ramsay" style="margin-right:20px;"></a>
+            <div class="col-sm-12 text-center"></div>
+            <a href="https://en.wikipedia.org/wiki/Michelle_Obama" target="_blank"><img class="img-fluid pb-3 text-center img-about" src="../../assets/images/michelle.jpg" alt="michelle Obama"></a>
+            <div class="col-sm-12 text-center"></div>
+            <a href="https://www.gatesnotes.com/" target="_blank"><img class="img-fluid px-3 text-center img-about" src="../../assets/images/bill.jpg" alt="Bill Gates" style="margin-right:20px;"></a>
+            <div class="col-sm-12 text-center"></div>
+          
+            <a href="https://www.sanjeevkapoor.com/" target="_blank"><img class="img-fluid pb-3 text-center img-about" src="../../assets/images/sanjeev.png" alt="Sanjeev Kapoor"></a>
+           
+             <div class="col-sm-12 text-center"></div>
+            
+        </div>
+        
+    </div>
+</div>
